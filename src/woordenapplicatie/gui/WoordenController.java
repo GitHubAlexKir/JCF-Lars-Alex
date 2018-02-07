@@ -71,7 +71,16 @@ public class WoordenController implements Initializable {
 
     @FXML
     private void sorteerAction(ActionEvent event) {
-         throw new UnsupportedOperationException("Not supported yet."); 
+     List<String> words = splitWords(taInput.getText()); //arraylist
+     HashSet<String> noDups = new HashSet<String>(words);
+     TreeSet<String> myTreeSet = new TreeSet(Collections.reverseOrder());
+     myTreeSet.addAll(noDups);
+     StringBuilder stringBuilder = new StringBuilder();
+     for (String test:myTreeSet
+          ) {
+      stringBuilder.append(test + "\n");
+     }
+     taOutput.setText(taOutput.getText() + stringBuilder.toString());
     }
 
     @FXML
