@@ -79,14 +79,15 @@ public class WoordenController implements Initializable {
      /*
         Remove duplicates.
       */
-
+     long start = System.currentTimeMillis();
      HashSet<String> noDups = new HashSet<String>(words);
 
      /*
         Show amount of words, and different words.
       */
-
-     taOutput.setText(taOutput.getText() + "Totaal aantal woorden: " + words.size() + "\n" + "Aantal verschillende woorden: : " + noDups.size());
+     long stop = System.currentTimeMillis();
+     long tijd = stop - start;
+     taOutput.setText(taOutput.getText() + "tijd berekening: " + tijd + "ms\n" + "Totaal aantal woorden: " + words.size() + "\n" + "Aantal verschillende woorden: : " + noDups.size());
     }
 
     /*
@@ -107,7 +108,7 @@ public class WoordenController implements Initializable {
      /*
         Remove duplicates.
       */
-
+     long start = System.currentTimeMillis();
      HashSet<String> noDups = new HashSet<String>(words);
 
      /*
@@ -130,8 +131,9 @@ public class WoordenController implements Initializable {
      for (String test:myTreeSet) {
       stringBuilder.append(test + "\n");
      }
-
-     taOutput.setText(taOutput.getText() + stringBuilder.toString());
+     long stop = System.currentTimeMillis();
+     long tijd = stop - start;
+     taOutput.setText(taOutput.getText() + "tijd berekening: " + tijd + "ms\n" + stringBuilder.toString());
     }
 
     /*
@@ -152,7 +154,7 @@ public class WoordenController implements Initializable {
      /*
         Create HashMap (with string and integer).
       */
-
+     long start = System.currentTimeMillis();
      HashMap<String, Integer> wordCount = new HashMap<String, Integer>();
 
      /*
@@ -182,7 +184,9 @@ public class WoordenController implements Initializable {
      wordCount.entrySet().stream()
              .sorted(Map.Entry.comparingByValue())
              .forEach(x -> stringBuilder.append(x + "\n"));
-     taOutput.setText(taOutput.getText() + stringBuilder.toString());
+     long stop = System.currentTimeMillis();
+     long tijd = stop - start;
+     taOutput.setText(taOutput.getText() + "tijd berekening: " + tijd + "ms\n" + stringBuilder.toString());
     }
 
 
@@ -204,7 +208,7 @@ public class WoordenController implements Initializable {
      /*
        Remove the duplicates with hashset.
       */
-
+     long start = System.currentTimeMillis();
      HashSet<String> noDups = new HashSet<>(words);
 
      /*
@@ -262,8 +266,9 @@ public class WoordenController implements Initializable {
      /*
       Show the string on the screen.
       */
-
-     taOutput.setText(taOutput.getText() + stringBuilder.toString());
+     long stop = System.currentTimeMillis();
+     long tijd = stop - start;
+     taOutput.setText(taOutput.getText() + "tijd berekening: " + tijd + "ms\n" + stringBuilder.toString());
     }
 
     private List<String> splitWords(String text)
