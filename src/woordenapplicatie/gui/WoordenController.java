@@ -62,8 +62,18 @@ public class WoordenController implements Initializable {
     @FXML
     private void aantalAction(ActionEvent event)
     {
+        long start = System.currentTimeMillis();
+
+        String result = wordClass.aantalAction(taInput.getText());
+
+
+        long stop = System.currentTimeMillis();
+        long tijd = stop - start;
+
+        String finalString = "Tijd berekening: " + tijd + " ms " + result;
+
         taOutput.setText(
-            wordClass.aantalAction(taInput.getText())
+                finalString
         );
     }
 
@@ -76,8 +86,17 @@ public class WoordenController implements Initializable {
     @FXML
     private void sorteerAction(ActionEvent event)
     {
+        long start = System.currentTimeMillis();
+
+        String result = wordClass.sortAction(taInput.getText());
+
+        long stop = System.currentTimeMillis();
+        long tijd = stop - start;
+
+        String finalString = "Totale tijd: " + tijd + " ms\n" + result;
+
         taOutput.setText(
-            wordClass.sortAction(taInput.getText())
+            finalString
         );
     }
 
@@ -90,8 +109,17 @@ public class WoordenController implements Initializable {
     @FXML
     private void frequentieAction(ActionEvent event)
     {
+        long start = System.currentTimeMillis();
+
+        String result = wordClass.frequentieAction(taInput.getText());
+
+        long stop = System.currentTimeMillis();
+        long tijd = stop - start;
+
+        String finalString = "Totale tijd: " + tijd + " ms\n" + result;
+
         taOutput.setText(
-            wordClass.frequentieAction(taInput.getText())
+            finalString
         );
     }
 
@@ -105,8 +133,17 @@ public class WoordenController implements Initializable {
     @FXML
     private void concordatieAction(ActionEvent event)
     {
+        long start = System.currentTimeMillis();
+
+        String result = wordClass.concordatieAction(taInput.getText());
+
+        long stop = System.currentTimeMillis();
+        long tijd = stop - start;
+
+        String finalString = "Totale tijd: " + tijd + " ms\n" + result;
+
         taOutput.setText(
-            wordClass.concordatieAction(taInput.getText())
+            finalString
         );
     }
 }

@@ -21,17 +21,13 @@ public class WordClass {
             Remove duplicates.
         */
 
-        long start = System.currentTimeMillis();
         HashSet<String> noDups = new HashSet<String>(words);
 
         /*
             Show amount of words, and different words.
         */
 
-        long stop = System.currentTimeMillis();
-        long tijd = stop - start;
-
-        return time + "tijd berekening: " + tijd + "ms\n" + "Totaal aantal woorden: " + words.size() + "\n" + "Aantal verschillende woorden: : " + noDups.size();
+        return "Totaal aantal woorden: " + words.size() + "\n" + "Aantal verschillende woorden: : " + noDups.size();
     }
 
     public String sortAction(String taInput)
@@ -46,7 +42,6 @@ public class WordClass {
             Remove duplicates.
         */
 
-        long start = System.currentTimeMillis();
         HashSet<String> noDups = new HashSet<String>(words);
 
         /*
@@ -70,10 +65,8 @@ public class WordClass {
             stringBuilder.append(test + "\n");
         }
 
-        long stop = System.currentTimeMillis();
-        long tijd = stop - start;
 
-        return time + "tijd berekening: " + tijd + "ms\n" + stringBuilder.toString();
+        return stringBuilder.toString();
 
     }
 
@@ -89,7 +82,6 @@ public class WordClass {
             Create HashMap (with string and integer).
         */
 
-        long start = System.currentTimeMillis();
         HashMap<String, Integer> wordCount = new HashMap<String, Integer>();
 
         /*
@@ -120,10 +112,7 @@ public class WordClass {
                 .sorted(Map.Entry.comparingByValue())
                 .forEach(x -> stringBuilder.append(x + "\n"));
 
-        long stop = System.currentTimeMillis();
-        long tijd = stop - start;
-
-        return time +  "tijd berekening: " + tijd + "ms\n" + stringBuilder.toString();
+        return stringBuilder.toString();
     }
 
 
@@ -146,7 +135,6 @@ public class WordClass {
             Remove the duplicates with hashset.
         */
 
-        long start = System.currentTimeMillis();
         HashSet<String> noDups = new HashSet<>(words);
 
         /*
@@ -209,10 +197,7 @@ public class WordClass {
             Show the string on the screen.
         */
 
-        long stop = System.currentTimeMillis();
-        long tijd = stop - start;
-
-        return time + "Tijd berekening: " + tijd + "ms\n" + stringBuilder.toString();
+        return stringBuilder.toString();
     }
 
     private List<String> splitWords(String text)
