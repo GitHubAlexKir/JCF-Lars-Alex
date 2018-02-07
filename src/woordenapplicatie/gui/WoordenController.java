@@ -61,37 +61,123 @@ public class WoordenController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         taInput.setText(DEFAULT_TEXT);
     }
-    
+
+    /*
+        Goal:
+
+        Show amount of words, and amount of different words.
+     */
     @FXML
-    private void aantalAction(ActionEvent event) {
-     List<String> words = splitWords(taInput.getText()); //arraylist
+    private void aantalAction(ActionEvent event)
+    {
+    /*
+        Split words.
+     */
+
+     List<String> words = splitWords(taInput.getText());
+
+     /*
+        Remove duplicates.
+      */
+
      HashSet<String> noDups = new HashSet<String>(words);
+
+     /*
+        Show amount of words, and different words.
+      */
+
      taOutput.setText(taOutput.getText() + "Totaal aantal woorden: " + words.size() + "\n" + "Aantal verschillende woorden: : " + noDups.size());
     }
 
+    /*
+        Goal:
+
+        Show all different words desc.
+     */
+
     @FXML
-    private void sorteerAction(ActionEvent event) {
-     List<String> words = splitWords(taInput.getText()); //arraylist
+    private void sorteerAction(ActionEvent event)
+    {
+    /*
+        Split words.
+     */
+
+     List<String> words = splitWords(taInput.getText());
+
+     /*
+        Remove duplicates.
+      */
+
      HashSet<String> noDups = new HashSet<String>(words);
+
+     /*
+        Reverse the order.
+      */
+
      TreeSet<String> myTreeSet = new TreeSet(Collections.reverseOrder());
      myTreeSet.addAll(noDups);
+
+     /*
+        Create string builder.
+      */
+
      StringBuilder stringBuilder = new StringBuilder();
-     for (String test:myTreeSet
-          ) {
+
+     /*
+        Loop over the treeset and append it to the stringbuilder.
+      */
+
+     for (String test:myTreeSet) {
       stringBuilder.append(test + "\n");
      }
+
      taOutput.setText(taOutput.getText() + stringBuilder.toString());
     }
 
+    /*
+        Goal:
+
+        Count how many times every word is presented in the entire text.
+     */
+
     @FXML
-    private void frequentieAction(ActionEvent event) {
-     List<String> words = splitWords(taInput.getText()); //arraylist
-     Map<String, Integer> wordCount = new HashMap<String, Integer>();
+    private void frequentieAction(ActionEvent event)
+    {
+     /*
+        Split words.
+      */
+
+     List<String> words = splitWords(taInput.getText());
+
+     /*
+        Create HashMap (with string and integer).
+      */
+
+     HashMap<String, Integer> wordCount = new HashMap<String, Integer>();
+
+     /*
+        Loop over all words.
+      */
 
      for(String word: words) {
+
+     /*
+        Check if word already exists in wordCount.
+      */
+
       Integer count = wordCount.get(word);
+
+      /*
+        Put the word in wordCount, with the amount of times it's presented.
+       */
+
       wordCount.put(word, (count==null) ? 1 : count+1);
      }
+
+     /*
+        Create the string. And sort it.
+      */
+
      StringBuilder stringBuilder = new StringBuilder();
      wordCount.entrySet().stream()
              .sorted(Map.Entry.comparingByValue())
@@ -100,13 +186,93 @@ public class WoordenController implements Initializable {
     }
 
 
+    /*
+        Goal:
+
+        Count for every word how many times it's presented in every line.
+     */
+
     @FXML
-    private void concordatieAction(ActionEvent event) {
-         throw new UnsupportedOperationException("Not supported yet."); 
+    private void concordatieAction(ActionEvent event)
+    {
+     /*
+       Split words.
+      */
+
+     List<String> words = splitWords(taInput.getText());
+
+     /*
+       Remove the duplicates with hashset.
+      */
+
+     HashSet<String> noDups = new HashSet<>(words);
+
+     /*
+      Create spring builder.
+      */
+     StringBuilder stringBuilder = new StringBuilder();
+
+     /*
+      Split lines.
+      */
+
+     String[] lines = taInput.getText().toLowerCase().split("\\r?\\n");
+
+     /*
+      Make list for keeping track of the counts.
+      */
+     List<Integer> lineCount = new ArrayList<>();
+     int count = 1;
+
+     /*
+      Loop over the no dups.
+      */
+
+     for (String word: noDups) {
+
+      /*
+        Loop over the lines
+       */
+
+       for (String l: lines) {
+
+          /*
+           Check if line contains word.
+           */
+
+          if(l.contains(word)) {
+
+           /*
+            If line contains word add the count to the list.
+            */
+           lineCount.add(count);
+          }
+          count++;
+       }
+
+       /*
+        Create the string and append the lineCount.
+        */
+
+       stringBuilder.append(word + " " + lineCount.toString() + "\n");
+       count = 1;
+       lineCount.clear();
+     }
+
+     /*
+      Show the string on the screen.
+      */
+
+     taOutput.setText(taOutput.getText() + stringBuilder.toString());
     }
 
     private List<String> splitWords(String text)
     {
+
+     /*
+      Split incoming text by words with a regex expression.
+      */
+
      long start = System.currentTimeMillis();
      List<String> words = new ArrayList<>(
              Arrays.asList(
