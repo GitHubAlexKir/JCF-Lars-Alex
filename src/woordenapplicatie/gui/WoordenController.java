@@ -85,8 +85,20 @@ public class WoordenController implements Initializable {
 
     @FXML
     private void frequentieAction(ActionEvent event) {
-         throw new UnsupportedOperationException("Not supported yet."); 
+     List<String> words = splitWords(taInput.getText()); //arraylist
+     Map<String, Integer> wordCount = new HashMap<String, Integer>();
+
+     for(String word: words) {
+      Integer count = wordCount.get(word);
+      wordCount.put(word, (count==null) ? 1 : count+1);
+     }
+     StringBuilder stringBuilder = new StringBuilder();
+     wordCount.entrySet().stream()
+             .sorted(Map.Entry.comparingByValue())
+             .forEach(x -> stringBuilder.append(x + "\n"));
+     taOutput.setText(taOutput.getText() + stringBuilder.toString());
     }
+
 
     @FXML
     private void concordatieAction(ActionEvent event) {
